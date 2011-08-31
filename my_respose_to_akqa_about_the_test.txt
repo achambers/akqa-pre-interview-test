@@ -1,0 +1,34 @@
+AKQA ATM Test
+
+It's a maven project so just unzip and then 'mvn clean install' and away you go.
+
+
+NOTES
+--------
+
+In terms of Input/Output, I saw the important part of this test being the way I designed and coded the 
+ATM services as opposed to how I go about writing a client that parses a text file.  Therefore, I wrote the code to process
+an AtmContext object that would contain a list of UserSession objects.  These objects, basically, modelling
+the data that is received in the input file.  This is where the real value of this test is I believe and
+so I didn't bother writing a client to simply parse a text file.  Instead, I have written an integration test
+called IntegrationTest that constructs an AtmContext object to model the Input Data, runs this through the
+AtmService and prints out the results, essentially, giving you the output you asked for.
+
+This was written completely in a TDD fashion.  I started with the AccountServiceTest and then associated code.
+I then refactored some code out into the PinService.  I then went on to the Instruction tests and code, followed
+by the AtmServiceTest and code and then finally the IntegrationTest.  And I was constantly doing the usual
+refactorings along the way.
+
+
+THOUGHTS ON THE TEST
+---------------------
+
+I found this test to be somewhat weird.  It's simple enough in theory, however, I found that the way it is 
+written kept pulling me away from how I envisage an ATM system like this to work in the real world.  Things
+like 'a third party building the UI and sending a file' with data such as the ATM balance, the user's correct
+pin and the user's account balance are wrong.  I just found this broke the flow of trying to write a nicely
+packaged piece of software.  Anyway, I think what I have is a good example of what I can do and how I think.
+
+This test actually took me more than an hour.  It was always going if you want a decent example.  I probably
+spent about 4 hours split between coding and thinking....And there was a bit more time outside of that thinking
+about design as well.
